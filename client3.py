@@ -28,20 +28,28 @@ QUERY = "http://localhost:8080/query?id={}"
 # 500 server request
 N = 500
 
-
+"""
+@param quote stock info
+@returns a stock's stock name, bid price, ask price, price 
+"""
 def getDataPoint(quote):
     """ Produce all the needed values to generate a datapoint """
-    """ ------------- Update this function -------------- """ 
     stock = quote['stock']
     bid_price = float(quote['top_bid']['price'])
     ask_price = float(quote['top_ask']['price'])
     price = (bid_price+ask_price)/2
     return stock, bid_price, ask_price, price
 
-
+"""
+@param price_a price of a stock, must be nonngetive
+@param price_b price of a stock, must be nonnegative
+@returns ratio of price_a to price_b
+"""
 def getRatio(price_a, price_b):
     """ Get ratio of price_a and price_b """
-    """ ------------- Update this function ------------- """
+    assert(price_a >= 0 and price_b >= 0)
+    if price_b == 0:
+        return
     return price_a/price_b
 
 
